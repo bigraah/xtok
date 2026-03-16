@@ -13,7 +13,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt && \
     playwright install chromium && \
-    rm -rf /root/.cache
+    rm -rf /root/.cache/pip
 
 COPY server.py .
 
