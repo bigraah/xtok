@@ -11,9 +11,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt && \
-    playwright install --with-deps chromium && \
-    rm -rf /root/.cache/pip
+RUN pip install --no-cache-dir -r requirements.txt
+
+ENV PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers
+RUN playwright install --with-deps chromium
 
 COPY server.py .
 
